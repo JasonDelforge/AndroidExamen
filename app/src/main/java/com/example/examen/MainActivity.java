@@ -2,6 +2,8 @@
 package com.example.examen;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
                 Boolean isNewClient = checkBox.isChecked();
                 SocketAsynchrone socketAsynchrone = new SocketAsynchrone(login,mdp,isNewClient);
                 socketAsynchrone.execute();
+                Intent intent = new Intent(MainActivity.this,ConsultActivity.class);
+                startActivity(intent);
         }
         });
     }
