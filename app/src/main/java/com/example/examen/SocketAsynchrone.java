@@ -1,6 +1,6 @@
-// SocketAsynchrone.java
 package com.example.examen;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 
 import java.io.IOException;
@@ -20,15 +20,15 @@ public class SocketAsynchrone extends AsyncTask<Void, Void, Boolean> {
     @Override
     protected Boolean doInBackground(Void... voids) {
         try {
-
             String ip = "192.168.5.128";
             int port = 50000;
-            if(Tcp.sClient == null || Tcp.sClient.isClosed())
-            {
+            if(Tcp.sClient == null || Tcp.sClient.isClosed()) {
                 Tcp.buildSocket(ip, port);
             }
             String requete = construireRequete("LOGIN", login, mdp, nouveau ? "NC" : "PNC");
+            System.out.println(requete);
             String reponse = Tcp.EchangeRequete(requete);
+
             return true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -43,6 +43,7 @@ public class SocketAsynchrone extends AsyncTask<Void, Void, Boolean> {
         for (String param : params) {
             requete.append(param).append("#");
         }
+        requete.deleteCharAt(requete.length() - 1);  // Supprimer le dernier caractère '#'
         requete.append("+)");
         return requete.toString();
     }

@@ -1,4 +1,3 @@
-// MainActivity.java
 package com.example.examen;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         Button login = findViewById(R.id.Login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
-        public void onClick(View v) {
+            public void onClick(View v) {
                 String login = EditNom.getText().toString();
                 String mdp = EditMdp.getText().toString();
                 Boolean isNewClient = checkBox.isChecked();
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 socketAsynchrone.execute();
                 Intent intent = new Intent(MainActivity.this,ConsultActivity.class);
                 startActivity(intent);
-        }
+            }
         });
     }
 }

@@ -17,33 +17,41 @@
         android:id="@+id/IdSuivant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="65dp"
         android:text="suivant"
-        tools:layout_editor_absoluteX="267dp"
-        tools:layout_editor_absoluteY="294dp" />
+        app:layout_constraintStart_toEndOf="@+id/IdPrecedent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerQuantite" />
 
     <Button
         android:id="@+id/IdPrecedent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="65dp"
         android:text="precendent"
-        tools:layout_editor_absoluteX="76dp"
-        tools:layout_editor_absoluteY="294dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerQuantite" />
 
     <Button
         android:id="@+id/IdQuitter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:layout_marginBottom="43dp"
         android:text="Quitter"
-        tools:layout_editor_absoluteX="167dp"
-        tools:layout_editor_absoluteY="418dp" />
+        app:layout_constraintBottom_toTopOf="@+id/IdLogout"
+        app:layout_constraintTop_toBottomOf="@+id/IdPrecedent"
+        tools:layout_editor_absoluteX="167dp" />
 
     <Button
         android:id="@+id/IdLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
         android:text="Logout"
-        tools:layout_editor_absoluteX="172dp"
-        tools:layout_editor_absoluteY="509dp" />
+        app:layout_constraintTop_toBottomOf="@+id/IdQuitter"
+        tools:layout_editor_absoluteX="172dp" />
 
     <TextView
         android:id="@+id/IdPrix"

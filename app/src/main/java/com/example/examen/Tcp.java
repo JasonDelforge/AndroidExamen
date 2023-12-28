@@ -61,7 +61,7 @@ public class Tcp
         {
             return -1;
         }
-        String trame = data + "#)";
+        String trame = data;
         OutputStream outputStream = socket.getOutputStream();
         outputStream.write(trame.getBytes(),0,trame.length());
         outputStream.flush();
