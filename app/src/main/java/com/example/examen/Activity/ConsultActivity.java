@@ -27,6 +27,7 @@ public class ConsultActivity extends AppCompatActivity {
     EditText quantiteText;
     Button logout;
     Button acheter;
+    Button panier;
     int i = 1;
 
     private static ConsultActivity instance;
@@ -51,6 +52,7 @@ public class ConsultActivity extends AppCompatActivity {
         suivant = findViewById(R.id.IdSuivant);
         precedent = findViewById(R.id.IdPrecedent);
         acheter = findViewById(R.id.IdAchat);
+        panier = findViewById(R.id.IdPanier);
         ConsultTask consultTask = new ConsultTask(i) {
             @Override
             protected void onPostExecute(ArticleEnCours articleEnCours) {
@@ -113,6 +115,14 @@ public class ConsultActivity extends AppCompatActivity {
                 Intent intent = new Intent(ConsultActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+
+            }
+        });
+        panier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent intent = new Intent(ConsultActivity.this,PanierActivity.class);
+               startActivity((intent));
 
             }
         });
