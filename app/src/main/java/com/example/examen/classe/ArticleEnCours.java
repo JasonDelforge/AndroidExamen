@@ -1,11 +1,11 @@
-package com.example.examen;
+package com.example.examen.classe;
 
 public class ArticleEnCours
 {
     private int id;
     private String intitule;
     private float prix;
-    private int stock;
+    private float  stock;
     private String image;
 
     public int getId() {
@@ -20,7 +20,7 @@ public class ArticleEnCours
         return prix;
     }
 
-    public int getStock() {
+    public float getStock() {
         return stock;
     }
 

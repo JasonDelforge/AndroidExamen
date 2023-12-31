@@ -1,7 +1,8 @@
-package com.example.examen;
+package com.example.examen.Activity;
 
-import android.content.Intent;
 import android.os.AsyncTask;
+
+import com.example.examen.librairie.Tcp;
 
 import java.io.IOException;
 import java.net.Socket;

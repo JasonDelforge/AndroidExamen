@@ -1,4 +1,4 @@
-package com.example.examen;
+package com.example.examen.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+
+import com.example.examen.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 Boolean isNewClient = checkBox.isChecked();
                 SocketAsynchrone socketAsynchrone = new SocketAsynchrone(login,mdp,isNewClient);
                 socketAsynchrone.execute();
-                Intent intent = new Intent(MainActivity.this,ConsultActivity.class);
+                Intent intent = new Intent(MainActivity.this, ConsultActivity.class);
                 startActivity(intent);
             }
         });

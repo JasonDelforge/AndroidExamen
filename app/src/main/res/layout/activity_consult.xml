@@ -9,8 +9,12 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="57dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="57dp"
+        android:layout_marginEnd="37dp"
+        app:layout_constraintEnd_toStartOf="@+id/IdPrix"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
@@ -18,72 +22,107 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginEnd="50dp"
         android:text="suivant"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/IdPrecedent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerQuantite" />
+        app:layout_constraintTop_toBottomOf="@+id/IdQuantite" />
 
     <Button
         android:id="@+id/IdPrecedent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="58dp"
         android:text="precendent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerQuantite" />
-
-    <Button
-        android:id="@+id/IdQuitter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:layout_marginBottom="43dp"
-        android:text="Quitter"
-        app:layout_constraintBottom_toTopOf="@+id/IdLogout"
-        app:layout_constraintTop_toBottomOf="@+id/IdPrecedent"
-        tools:layout_editor_absoluteX="167dp" />
+        app:layout_constraintTop_toBottomOf="@+id/IdQuantite" />
 
     <Button
         android:id="@+id/IdLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="43dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="59dp"
         android:text="Logout"
-        app:layout_constraintTop_toBottomOf="@+id/IdQuitter"
-        tools:layout_editor_absoluteX="172dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IdAchat" />
 
     <TextView
         android:id="@+id/IdPrix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="40dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="313dp"
-        tools:layout_editor_absoluteY="96dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/IdArticle" />
 
     <TextView
         android:id="@+id/IdStock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="40dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="313dp"
-        tools:layout_editor_absoluteY="133dp" />
-
-    <Spinner
-        android:id="@+id/spinnerQuantite"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/IdPrix" />
 
     <TextView
         android:id="@+id/IdArticle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="14dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="313dp"
-        tools:layout_editor_absoluteY="63dp" />
+        app:layout_constraintBottom_toTopOf="@+id/IdPrix"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/IdAchat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="61dp"
+        android:layout_marginEnd="87dp"
+        android:text="acheter"
+        app:layout_constraintEnd_toStartOf="@+id/IdPanier"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IdPrecedent" />
+
+    <Button
+        android:id="@+id/IdPanier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="86dp"
+        android:layout_marginTop="61dp"
+        android:layout_marginEnd="54dp"
+        android:text="Panier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/IdAchat"
+        app:layout_constraintTop_toBottomOf="@+id/IdSuivant" />
+
+    <EditText
+        android:id="@+id/IdQuantite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="58dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Quantite"
+        app:layout_constraintBottom_toTopOf="@+id/IdSuivant"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

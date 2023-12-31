@@ -1,4 +1,4 @@
-package com.example.examen;
+package com.example.examen.librairie;
 
 import java.io.IOException;
 import java.io.OutputStream;
