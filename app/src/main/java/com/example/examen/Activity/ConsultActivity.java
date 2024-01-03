@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,7 +20,6 @@ import com.example.examen.classe.Logout;
 public class ConsultActivity extends AppCompatActivity {
     Button suivant;
     Button precedent;
-    Button retour;
     TextView prix;
     TextView article;
     TextView stock;
@@ -30,18 +30,13 @@ public class ConsultActivity extends AppCompatActivity {
     Button panier;
     int i = 1;
 
-    private static ConsultActivity instance;
 
-    public static ConsultActivity getInstance() {
-        return instance;
-    }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consult);
-        instance=this;
 
         image = findViewById(R.id.imageView);
         article = findViewById(R.id.IdArticle);
@@ -77,7 +72,13 @@ public class ConsultActivity extends AppCompatActivity {
                 }.execute();
                 if(i==21)
                 {
-                    i=0;
+                    try {
+                        Toast.makeText(ConsultActivity.class.newInstance(),"Vous etes a la fin",Toast.LENGTH_LONG).show();
+                    } catch (IllegalAccessException e) {
+                        throw new RuntimeException(e);
+                    } catch (InstantiationException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         });
@@ -95,7 +96,13 @@ public class ConsultActivity extends AppCompatActivity {
                 }.execute();
                 if(i==1)
                 {
-                    i=22;
+                    try {
+                        Toast.makeText(ConsultActivity.class.newInstance(),"Revenu au debut",Toast.LENGTH_LONG).show();
+                    } catch (IllegalAccessException e) {
+                        throw new RuntimeException(e);
+                    } catch (InstantiationException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         });

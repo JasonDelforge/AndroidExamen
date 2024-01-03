@@ -54,7 +54,6 @@ public class ConsultTask extends AsyncTask<Void, Void, ArticleEnCours> {
         return articleEnCours;
     }
     private String normalizeImageName(String imageName) {
-        // Si le nom du fichier est "PommesDeTerre", le normaliser
         if ("pommesDeTerre.jpg".equalsIgnoreCase(imageName)) {
             return "pommesdeterre.jpg";
         } else {

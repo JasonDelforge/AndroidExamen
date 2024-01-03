@@ -92,10 +92,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="85dp"
-        android:layout_marginTop="61dp"
-        android:layout_marginEnd="87dp"
+        android:layout_marginTop="60dp"
         android:text="acheter"
-        app:layout_constraintEnd_toStartOf="@+id/IdPanier"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/IdPrecedent" />
 
@@ -104,7 +102,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="86dp"
-        android:layout_marginTop="61dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="54dp"
         android:text="Panier"
         app:layout_constraintEnd_toEndOf="parent"
