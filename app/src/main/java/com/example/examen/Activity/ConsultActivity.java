@@ -61,25 +61,7 @@ public class ConsultActivity extends AppCompatActivity {
         suivant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i++;
-                new ConsultTask(i) {
-                    @Override
-                    protected void onPostExecute(ArticleEnCours articleEnCours) {
-                        if (articleEnCours != null) {
-                            updateInterface(articleEnCours);
-                        }
-                    }
-                }.execute();
-                if(i==21)
-                {
-                    try {
-                        Toast.makeText(ConsultActivity.class.newInstance(),"Vous etes a la fin",Toast.LENGTH_LONG).show();
-                    } catch (IllegalAccessException e) {
-                        throw new RuntimeException(e);
-                    } catch (InstantiationException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
+                BoutonSuivantClick();
             }
         });
         precedent.setOnClickListener(new View.OnClickListener() {
@@ -117,14 +99,10 @@ public class ConsultActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Logout log = new Logout();
-                log.execute();
-                Intent intent = new Intent(ConsultActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-
+                Bouton_Logout(v);
             }
         });
+
         panier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,6 +112,30 @@ public class ConsultActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void BoutonSuivantClick() {
+        i++;
+        new ConsultTask(i) {
+            @Override
+            protected void onPostExecute(ArticleEnCours articleEnCours) {
+                if (articleEnCours != null) {
+                    updateInterface(articleEnCours);
+                }
+            }
+        }.execute();
+
+        if (i == 21) {
+            Toast.makeText(ConsultActivity.this, "Vous êtes à la fin", Toast.LENGTH_LONG).show();
+        }
+    }
+    public void Bouton_Logout(View view) {
+        Logout log = new Logout();
+        log.execute();
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void updateInterface(ArticleEnCours articleEnCours) {
