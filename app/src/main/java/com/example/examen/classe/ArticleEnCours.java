@@ -5,7 +5,7 @@ public class ArticleEnCours
     private int id;
     private String intitule;
     private float prix;
-    private float  stock;
+    private int  stock;
     private String image;
 
     public int getId() {
@@ -20,7 +20,7 @@ public class ArticleEnCours
         return prix;
     }
 
-    public float getStock() {
+    public int getStock() {
         return stock;
     }
 

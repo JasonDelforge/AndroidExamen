@@ -5,13 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <GridView
-        android:layout_width="155dp"
-        android:layout_height="571dp"
-        android:layout_marginBottom="133dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="8dp" />
-
     <TextView
         android:id="@+id/IdTotal"
         android:layout_width="wrap_content"
@@ -27,23 +20,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="31dp"
-        android:layout_marginTop="44dp"
         android:layout_marginEnd="139dp"
         android:layout_marginBottom="40dp"
         android:text="Payer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/IdTotal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/_dynamic" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/IdSupprimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="24dp"
         android:text="Supprimer"
+        app:layout_constraintBottom_toTopOf="@+id/IdSupprimerPanier"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/_dynamic"
         app:layout_constraintTop_toTopOf="parent" />
@@ -52,11 +45,32 @@
         android:id="@+id/IdSupprimerPanier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="63dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="29dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="4dp"
         android:text="SupprimerPanier"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/_dynamic"
         app:layout_constraintTop_toBottomOf="@+id/IdSupprimer" />
+
+    <GridView
+        android:id="@+id/IdView"
+        android:layout_width="225dp"
+        android:layout_height="555dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="72dp"
+        app:layout_constraintBottom_toTopOf="@+id/IdPayer"
+        app:layout_constraintEnd_toStartOf="@+id/IdSupprimerPanier"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/IdRetour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginEnd="45dp"
+        android:text="Retour"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/IdView"
+        app:layout_constraintTop_toBottomOf="@+id/IdSupprimerPanier" />
 </androidx.constraintlayout.widget.ConstraintLayout>

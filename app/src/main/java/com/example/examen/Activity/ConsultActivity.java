@@ -30,9 +30,6 @@ public class ConsultActivity extends AppCompatActivity {
     Button panier;
     int i = 1;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,15 +45,9 @@ public class ConsultActivity extends AppCompatActivity {
         precedent = findViewById(R.id.IdPrecedent);
         acheter = findViewById(R.id.IdAchat);
         panier = findViewById(R.id.IdPanier);
-        ConsultTask consultTask = new ConsultTask(i) {
-            @Override
-            protected void onPostExecute(ArticleEnCours articleEnCours) {
-                if (articleEnCours != null) {
-                    updateInterface(articleEnCours);
-                }
-            }
-        };
-        consultTask.execute();
+
+        // Initialisation de la première instance de ConsultTask
+        createConsultTask(i);
 
         suivant.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,38 +55,31 @@ public class ConsultActivity extends AppCompatActivity {
                 BoutonSuivantClick();
             }
         });
+
         precedent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 i--;
-                new ConsultTask(i) {
-                    @Override
-                    protected void onPostExecute(ArticleEnCours articleEnCours) {
-                        if (articleEnCours != null) {
-                            updateInterface(articleEnCours);
-                        }
-                    }
-                }.execute();
-                if(i==1)
-                {
+                createConsultTask(i);
+                if (i == 1) {
                     try {
-                        Toast.makeText(ConsultActivity.class.newInstance(),"Revenu au debut",Toast.LENGTH_LONG).show();
-                    } catch (IllegalAccessException e) {
-                        throw new RuntimeException(e);
-                    } catch (InstantiationException e) {
+                        Toast.makeText(ConsultActivity.this, "Revenu au debut", Toast.LENGTH_LONG).show();
+                    } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
                 }
             }
         });
+
         acheter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String quatiteChoisis = (String) quantiteText.getText().toString();
-                Achat achat = new Achat(quatiteChoisis,i);
+                String quatiteChoisis = quantiteText.getText().toString();
+                Achat achat = new Achat(quatiteChoisis, i);
                 achat.execute();
             }
         });
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,17 +90,20 @@ public class ConsultActivity extends AppCompatActivity {
         panier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent intent = new Intent(ConsultActivity.this,PanierActivity.class);
-               startActivity((intent));
-
+                Intent intent = new Intent(ConsultActivity.this, PanierActivity.class);
+                intent.putExtra("article_id", i);
+                intent.putExtra("article_quantite", quantiteText.getText().toString());
+                intent.putExtra("article_nom", article.getText().toString());
+                intent.putExtra("article_prix", prix.getText().toString());
+                intent.putExtra("article_stock", stock.getText().toString());
+                startActivity(intent);
             }
         });
-
     }
 
-    private void BoutonSuivantClick() {
-        i++;
-        new ConsultTask(i) {
+
+    private void createConsultTask(int index) {
+        new ConsultTask(index) {
             @Override
             protected void onPostExecute(ArticleEnCours articleEnCours) {
                 if (articleEnCours != null) {
@@ -124,11 +111,17 @@ public class ConsultActivity extends AppCompatActivity {
                 }
             }
         }.execute();
+    }
+
+    private void BoutonSuivantClick() {
+        i++;
+        createConsultTask(i);
 
         if (i == 21) {
             Toast.makeText(ConsultActivity.this, "Vous êtes à la fin", Toast.LENGTH_LONG).show();
         }
     }
+
     public void Bouton_Logout(View view) {
         Logout log = new Logout();
         log.execute();

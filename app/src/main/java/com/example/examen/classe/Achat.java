@@ -50,13 +50,13 @@ public class Achat extends AsyncTask<String, Void, Boolean> {
     {
         if(valid)
         {
-            try {
+            /*try {
                 Toast.makeText(ConsultActivity.class.newInstance(),"Article ajouté",Toast.LENGTH_LONG).show();
             } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);
             } catch (InstantiationException e) {
                 throw new RuntimeException(e);
-            }
+            }*/
             ConsultTask consultTask = new ConsultTask(id);
             consultTask.execute();
         }
