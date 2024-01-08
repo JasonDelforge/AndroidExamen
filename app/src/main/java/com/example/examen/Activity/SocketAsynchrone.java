@@ -21,7 +21,7 @@ public class SocketAsynchrone extends AsyncTask<Void, Void, Boolean> {
     @Override
     protected Boolean doInBackground(Void... voids) {
         try {
-            String ip = "192.168.5.128";
+            String ip = "192.168.1.44";
             int port = 50000;
             if(Tcp.sClient == null || Tcp.sClient.isClosed()) {
                 Tcp.buildSocket(ip, port);

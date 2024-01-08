@@ -16,6 +16,12 @@ import com.example.examen.R;
 import com.example.examen.classe.Achat;
 import com.example.examen.classe.ArticleEnCours;
 import com.example.examen.classe.Logout;
+import com.example.examen.classe.PanierItems;
+import com.example.examen.classe.PanierManager;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConsultActivity extends AppCompatActivity {
     Button suivant;
@@ -29,6 +35,7 @@ public class ConsultActivity extends AppCompatActivity {
     Button acheter;
     Button panier;
     int i = 1;
+    private List<PanierItems> articlesAchetes = PanierManager.getInstance().getArticlesAchetes();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +81,18 @@ public class ConsultActivity extends AppCompatActivity {
         acheter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String quatiteChoisis = quantiteText.getText().toString();
-                Achat achat = new Achat(quatiteChoisis, i);
+                String quantiteChoisis = quantiteText.getText().toString();
+
+                int articleId = i;
+                String articleNom = article.getText().toString();
+                float articlePrix = Float.parseFloat(prix.getText().toString());
+                int articleStock = Integer.parseInt(stock.getText().toString());
+
+                articlesAchetes.add(new PanierItems(new ArticleEnCours(articleId, articleNom, articlePrix, articleStock, ""), Integer.parseInt(quantiteChoisis)));
+
+                Toast.makeText(ConsultActivity.this, quantiteChoisis + " " + articleNom + " acheté(s)", Toast.LENGTH_SHORT).show();
+                System.out.println(articlesAchetes);
+                Achat achat = new Achat(quantiteChoisis, articleId);
                 achat.execute();
             }
         });
@@ -91,11 +108,8 @@ public class ConsultActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ConsultActivity.this, PanierActivity.class);
-                intent.putExtra("article_id", i);
-                intent.putExtra("article_quantite", quantiteText.getText().toString());
-                intent.putExtra("article_nom", article.getText().toString());
-                intent.putExtra("article_prix", prix.getText().toString());
-                intent.putExtra("article_stock", stock.getText().toString());
+                System.out.println(articlesAchetes);
+                intent.putExtra("achats", (Serializable) articlesAchetes);
                 startActivity(intent);
             }
         });

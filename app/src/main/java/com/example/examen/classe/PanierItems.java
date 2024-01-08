@@ -1,7 +1,10 @@
 package com.example.examen.classe;
 
-public class PanierItems extends ArticleEnCours
+import java.io.Serializable;
+
+public class PanierItems extends ArticleEnCours implements Serializable
 {
+    ArticleEnCours articleEnCours;
     private int quantite;
     public PanierItems(ArticleEnCours articleEnCours,int quantite)
     {
@@ -15,6 +18,10 @@ public class PanierItems extends ArticleEnCours
 
     public void setQuantite(int quantite) {
         this.quantite = quantite;
+    }
+
+    public ArticleEnCours getArticleEnCours() {
+        return articleEnCours;
     }
     @Override
     public String toString() {

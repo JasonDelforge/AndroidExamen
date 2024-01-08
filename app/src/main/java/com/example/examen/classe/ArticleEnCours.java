@@ -1,6 +1,8 @@
 package com.example.examen.classe;
 
-public class ArticleEnCours
+import java.io.Serializable;
+
+public class ArticleEnCours implements Serializable
 {
     private int id;
     private String intitule;
