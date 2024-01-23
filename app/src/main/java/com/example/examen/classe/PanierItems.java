@@ -1,5 +1,7 @@
 package com.example.examen.classe;
 
+import android.os.AsyncTask;
+
 import java.io.Serializable;
 
 public class PanierItems extends ArticleEnCours implements Serializable

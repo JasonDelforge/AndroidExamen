@@ -11,14 +11,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.examen.R;
-import com.example.examen.classe.ArticleEnCours;
-import com.example.examen.classe.PanierItems;
+import com.example.examen.classe.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PanierActivity extends AppCompatActivity {
+public class PanierActivity extends AppCompatActivity{
     GridView gridPanier;
     Button supprimer;
     Button payer;
@@ -42,6 +41,9 @@ public class PanierActivity extends AppCompatActivity {
         panierAdapters = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, panierItemsList);
         gridPanier.setAdapter(panierAdapters);
 
+        gridPanier.setChoiceMode(GridView.CHOICE_MODE_SINGLE); // Activer la sélection d'un seul article
+        gridPanier.setSelected(true);
+
         List<PanierItems> articlesAchetes = (List<PanierItems>) getIntent().getSerializableExtra("achats");
 
         ajouterAuPanier(articlesAchetes);
@@ -49,7 +51,9 @@ public class PanierActivity extends AppCompatActivity {
         retour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BoutonRetourClick();
+                Intent intent = new Intent(PanierActivity.this, ConsultActivity.class);
+                intent.putExtra("panier", (Serializable) panierItemsList);
+                startActivity(intent);
             }
         });
 
@@ -58,13 +62,44 @@ public class PanierActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int pos = gridPanier.getCheckedItemPosition();
                 System.out.println(pos);
+                if (pos != GridView.INVALID_POSITION) {
+                    Supprimer supprimer = new Supprimer(pos);
+                    supprimer.execute();
+
+                    panierItemsList.remove(pos);
+                    panierAdapters.notifyDataSetChanged();
+                    Toast.makeText(PanierActivity.this, "Article supprimé du panier", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(PanierActivity.this, "Sélectionnez un article à supprimer", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-    }
 
-    private void BoutonRetourClick() {
-        Intent intent = new Intent(PanierActivity.this, ConsultActivity.class);
-        startActivity(intent);
+        SupprimerPanier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SupprimerPanier supprimerPanier = new SupprimerPanier();
+                supprimerPanier.execute();
+
+                // Supprimer tout le contenu du panier
+                panierItemsList.clear();
+                panierAdapters.notifyDataSetChanged();
+                Toast.makeText(PanierActivity.this, "Panier vidé", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        payer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Confirmer confirmer = new Confirmer();
+                confirmer.execute();
+
+                panierItemsList.clear();
+                panierAdapters.notifyDataSetChanged();
+                Toast.makeText(PanierActivity.this, "Commande payée", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private void ajouterAuPanier(List<PanierItems> articlesAchetes) {

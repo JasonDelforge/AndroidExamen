@@ -21,6 +21,7 @@ import com.example.examen.classe.PanierManager;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ConsultActivity extends AppCompatActivity {
@@ -52,6 +53,10 @@ public class ConsultActivity extends AppCompatActivity {
         precedent = findViewById(R.id.IdPrecedent);
         acheter = findViewById(R.id.IdAchat);
         panier = findViewById(R.id.IdPanier);
+
+        if (getIntent().hasExtra("panier")) {
+            articlesAchetes = (List<PanierItems>) getIntent().getSerializableExtra("panier");
+        }
 
         // Initialisation de la première instance de ConsultTask
         createConsultTask(i);
@@ -162,5 +167,15 @@ public class ConsultActivity extends AppCompatActivity {
             return NomFichier.substring(0, NomFichier.lastIndexOf('.'));
         }
         return NomFichier;
+    }
+
+    public List<PanierItems> RemoveItems(String choix, int IdBuf){
+        if(choix == "ALL"){
+            articlesAchetes.removeAll(Collections.singleton(true));
+        }
+        else if (choix == "INDEX"){
+            articlesAchetes.remove(IdBuf);
+        }
+        return articlesAchetes;
     }
 }

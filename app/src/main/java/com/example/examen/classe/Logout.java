@@ -11,8 +11,6 @@ public class Logout extends AsyncTask<Void, Void,Void> {
     protected Void doInBackground(Void... voids) {
         String requete = "LOGOUT#" + "+)";
         String reponse;
-
-
             try {
                 reponse = Tcp.EchangeRequete(requete);
             } catch (IOException e) {
